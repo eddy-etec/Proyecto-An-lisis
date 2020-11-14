@@ -76,8 +76,6 @@
 
           }
 
-          //echo "hoola";
-
           $_SESSION["id_usuario"] = $id_us;
           $_SESSION["nomb_comp"] = $nombre." ".$primer_apellido;
           header("Location: index.php");
