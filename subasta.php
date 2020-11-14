@@ -52,7 +52,7 @@
 
     <?php
       if (isset($_POST["ofertar"])) {
-        //Si el usuario quiere ofertar por un producto
+        //Si el usuario quiere ofertar por un vehiculo
         $oferta = $_POST["oferta"];
         $id_user_1 = $_POST["id_user"];
         $id_sub_1 = $_POST["id_sub"];
@@ -60,7 +60,7 @@
         $fecha_hora_actual = date("Y-m-d H:i:s");
 
           if($oferta == $max){
-            //echo "<script>alert('$oferta, 0, $fecha_hora_actual, $id_sub_1, $id_user_1');</script>";
+            
             $res_1 = $bd->query("INSERT into oferta(oferta, estado, fecha, id_subasta, comprador) values($oferta, 1, '$fecha_hora_actual',$id_sub_1, $id_user_1);");
             if($res_1 == false){
               echo "<script>alert('No se ha podido ofertar');</script>";
@@ -78,7 +78,7 @@
               }
             }
           }else{
-            //echo "<script>alert('Oferta hecha');</script>";
+            
             $res_1 = $bd->query("INSERT into oferta(oferta, estado, fecha, id_subasta, comprador) values($oferta, 0, '$fecha_hora_actual',$id_sub_1, $id_user_1);");
             if($res_1 == false){
               echo "<script>alert('No se ha podido ofertar');</script>";
@@ -92,8 +92,8 @@
             }
           }
       }elseif(isset($_POST["comprar"])){
-        //echo "<script>alert('Vendido');</script>";
-        //Si el usuario quiere comprar el producto pagando el monto maximo de la subasta
+        
+        //Si el usuario quiere comprar el vehiculo pagando el monto maximo de la subasta
         $oferta = $_POST["max"];
         $id_user_1 = $_POST["id_user"];
         $id_sub_1 = $_POST["id_sub"];
@@ -137,18 +137,18 @@
             <?php
               include ("header.php");
             ?>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            
             <?php
               include ("sidebar.php");
             ?>
-            <!-- /.navbar-collapse -->
+            
         </nav>
 
         <div id="page-wrapper">
 
             <div class="container-fluid">
 
-                <!-- Page Heading -->
+              
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
@@ -205,9 +205,6 @@
                               $result = $bd->select("SELECT * from categoria where id_categoria=$id_categoria");
                               $categoria_arr = mysqli_fetch_array($result);
                               $categoria = $categoria_arr["categoria"];
-
-                              //echo "$id_subasta, $min, $max, $ini, $fin, $comprador, $id_producto, $nombre_p, $imagen_p<br>";
-
                               $res_count=$bd->select("SELECT count(*) as total from oferta where id_subasta=$id_sub");
                               $data=mysqli_fetch_array($res_count);
                               $count_ofert = $data['total'];
@@ -219,19 +216,17 @@
                                   $oferta = $row3["oferta"];
                                   $ofertante_comp = $row3["comprador"];
 
-                                  //echo "$id_subasta, $min, $max, $ini, $fin, $comprador, $id_producto, $nombre_p, $imagen_p, $id_oferta, $oferta<br>";
-
-                                  /*Aqui se mostraran los productos que tienen una oferta ya*/
+                                  /*Aqui se mostraran los vehiculos que ya tienen una oferta*/
                                   ?>
                                   <div class="col-sm-6 col-md-6">
                                       <?php
-                                        //Aqui se mostrara la imagen del producto en grande
+                                        //Aqui se mostrara la imagen del vehiculo en grande
                                         echo "<img src='images/productos/$imagen_v' style='max-height: 450px; width: 100%;'>";
                                       ?>
                                   </div>
                                   <div class="col-sm-6 col-md-6">
                                     <div class="thumbnail">
-                                      <?php //echo "<img src='images/productos/$imagen_p' style='height: 220px;'>";?>
+                                      <?php 
                                       <div class="caption">
                                         <?php
                                           if($estado == 1 && $ofertante_comp != null){
@@ -246,8 +241,7 @@
                                         <hr style="margin: 1px 1px 1px 1px;">
 
                                         <p>Vehículo publicado el <?php echo "<b>$ini</b>"; ?></p>
-                                        <p><?php //print $interval->format('%R %a días %H horas %I minutos'); ?></p>
-
+                                        <p><?php 
                                         <p id="tiempo"></p>
                                         <input type="hidden" id="limite" value="<?php echo $fin; ?>">
 
@@ -296,23 +290,23 @@
                                     </div>
                                   </div>
                                   <?php
-                                  /*Fin de los productos que tienen una oferta ya*/
+                                  /*Fin de los vehículos que ya tienen una oferta */
 
                                 }
                               }else{
-                                //echo "Registro sin ofertas aun<br>";
+                               
 
-                                /*Aqui se mostraran los productos que aun no tienen oferta*/
+                                /*Aqui se mostraran los vehículos que aun no tienen oferta*/
                                 ?>
                                       <div class="col-sm-6 col-md-6">
                                           <?php
-                                            //Aqui se mostrara la imagen del producto en grande
+                                            //Aqui se mostrara la imagen del vehiculo en grande
                                             echo "<img src='images/productos/$imagen_v' style='max-height: 450px; width: 100%;'>";
                                           ?>
                                       </div>
                                       <div class="col-sm-6 col-md-6">
                                         <div class="thumbnail">
-                                          <?php //echo "<img src='images/productos/$imagen_p' style='height: 220px;'>";?>
+                                          <?php 
                                           <div class="caption">
                                             <h2 class="text-success"><?php echo $marca_v; ?></h2>
                                             <h2 class="text-success"><?php echo $modelo_v; ?></h2>
@@ -367,14 +361,14 @@
                                         </div>
                                       </div>
                                 <?php
-                                /*Fin de los productos que no tienen oferta*/
+                                /*Fin de los vehiculos que no tienen oferta*/
                               }
 
                             }
                           }else{
                             echo "<h4>Hubo un error al recuperar el vehículo</h4>";
                           }
-                          //Termina consulta de producto de la subasta
+                          //Termina consulta del vehículo de la subasta
                         }
                       }else{
                         echo "<h3>Actualmente no hay subastas disponibles</h3>";
@@ -387,13 +381,13 @@
                 <!-- Fin de listado -->
 
             </div>
-            <!-- /.container-fluid -->
+           
 
         </div>
-        <!-- /#page-wrapper -->
+     
 
     </div>
-    <!-- /#wrapper -->
+   
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
