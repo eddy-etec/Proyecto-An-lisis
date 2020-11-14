@@ -48,7 +48,7 @@
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
+            
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -62,18 +62,18 @@
             <?php
               include ("header.php");
             ?>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            
             <?php
               include ("sidebar.php");
             ?>
-            <!-- /.navbar-collapse -->
+            
         </nav>
 
         <div id="page-wrapper">
 
             <div class="container-fluid">
 
-                <!-- Page Heading -->
+               
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
@@ -130,7 +130,7 @@
 
                                   //echo "$id_subasta, $min, $max, $ini, $fin, $comprador, $id_producto, $nombre_p, $imagen_p, $id_oferta, $oferta<br>";
 
-                                  /*Aqui se mostraran los productos que tienen una oferta ya*/
+                                  /*Aqui se mostraran los vehículos que ya tienen una oferta*/
                                   ?>
                                         <div class="col-sm-6 col-md-4">
                                           <div class="thumbnail">
@@ -149,9 +149,8 @@
 
                                 }
                               }else{
-                                //echo "Registro sin ofertas aun<br>";
-
-                                /*Aqui se mostraran los productos que aun no tienen oferta*/
+                               
+                                /*Aqui se mostraran los vehículos que aun no tienen oferta*/
                                 ?>
                                       <div class="col-sm-6 col-md-4">
                                         <div class="thumbnail">
@@ -166,14 +165,14 @@
                                         </div>
                                       </div>
                                 <?php
-                                /*Fin de los productos que no tienen oferta*/
+                                /*Fin de los vehículos que no tienen oferta*/
                               }
 
                             }
                           }else{
                             echo "<h4>Hubo un error al recuperar el producto</h4>";
                           }
-                          //Termina consulta de producto de la subasta
+                          //Termina consulta de vehículo de la subasta
                         }
                       }else{
                         echo "<h3>Por el momento no existen subastas</h3>";
@@ -190,7 +189,7 @@
                 <!-- Fin de listado -->
 
             </div>
-            <!-- /.container-fluid -->
+           
 
         </div>
         <!-- /#page-wrapper -->
